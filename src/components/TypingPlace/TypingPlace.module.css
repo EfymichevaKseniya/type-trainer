@@ -1,0 +1,31 @@
+.typingPlace {
+  padding: 3rem;
+  background: #fff;
+  border-radius: 0.4rem;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+}
+
+.typingTextWrapper {
+  display: inline-block;
+}
+
+.typingText {
+  font-size: 2rem;
+  line-height: 2.8rem;
+}
+
+.key {
+  background-color: rgb(27, 151, 27);
+  color: #fff;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.keyWrong {
+  background-color: rgba(196, 25, 59, 0.918);
+  color: #fff;
+  border-radius: 2px;
+  padding: 0 2px;
+}

@@ -1,0 +1,35 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebarTitle {
+  font-size: 1.4rem;
+  color: #95aecd;
+}
+
+.sidebarValues {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #313131;
+}
+/* 
+.sidebarBtn {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #313131;
+  padding: 1rem 1.2rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+
+.sidebarBtn:hover {
+  background: rgba(115, 215, 166, 0.4);
+}
+
+.sidebarBtn:focus {
+  background: rgba(115, 215, 166, 0.7);
+} */
