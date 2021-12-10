@@ -3,12 +3,20 @@ import axios from 'axios';
 
 const fetchText = createAsyncThunk(
   'text/fetchAll',
-  async (_, thunkAPI) => {
+  async (lang, thunkAPI) => {
     try {
-      const response = await axios.get(
-        'https://baconipsum.com/api/?type=all-meat&sentences=4'
-      );
-      return response.data[0];
+      if (lang === 'eng') {
+        const response = await axios.get(
+          'https://baconipsum.com/api/?type=all-meat&sentences=4'
+        );
+        return response.data[0];
+      } else if (lang === 'rus') {
+        const response = await axios.get(
+          'https://fish-text.ru/get?format=json&number=3'
+        );
+        return response.data.text;
+      }
+      
     } catch (e) {
       return thunkAPI.rejectWithValue('Не удалось загрузить текст');
     }

@@ -12,13 +12,14 @@ export const initialState = {
   currentSymbol: '',
   isSymbolWrong: false,
   startTime: null,
-  isStart: true,
+  isStart: false,
   isResult: false,
   mistakes: 0,
   duration: 0,
   step: 0,
   outValues: '',
-  typedText: ''
+  typedText: '',
+  lang: 'eng',
 };
 
 const setError = (state, action) => {
@@ -38,21 +39,28 @@ export const  typeTrainerSlice = createSlice({
     resetState: (state) => {
       state.isStart = !state.isStart;
       state.outValues = '';
+      state.typedText = '';
+      state.startTime = null;
       state.step = 0;
+      state.mistakes = 0;
       state.speed = 0;
       state.accuracy = 100;
       state.isResult = false;
+      state.isSymbolWrong = false;
+      state.duration = 0;
+      state.text = '';
     },
     isRightKey: (state, action) => {
       state.step += 1;
       state.currentSymbol = action.payload[state.step];
-      state.outValues += action.payload; 
+      state.outValues += action.payload;
+      state.typedText += action.payload;
       state.isSymbolWrong = false;
       state.percent =((state.outValues.length + 1) * 100) / state.textLength;
     },
     complete: (state) => {
       state.isResult = true;
-      state.outValues = '';
+      state.isStart = false;
     },
     isWrongKey: (state, action) => {
       state.isSymbolWrong = true;
@@ -67,6 +75,12 @@ export const  typeTrainerSlice = createSlice({
     start: (state,action) => {
       state.startTime = state.startTime || action.payload
     },
+    startTyping: (state ) => {
+      state.isStart = !state.isStart;
+    },
+    changeLang: (state, action) => {
+      state.lang = action.payload;
+    }
   },
   extraReducers: {
     [fetchText.pending]: (state) => {
@@ -81,6 +95,6 @@ export const  typeTrainerSlice = createSlice({
   },
 });
 
-export const { setText, resetState, isRightKey, isWrongKey, start, setSpeed, complete } = typeTrainerSlice.actions;
+export const { setText, resetState, isRightKey, isWrongKey, start, setSpeed, complete, startTyping, changeLang } = typeTrainerSlice.actions;
 
 export default typeTrainerSlice.reducer;

@@ -29,3 +29,18 @@
   border-radius: 2px;
   padding: 0 2px;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box__btn {
+  display: flex;
+}
+
+.box__btn button {
+  margin-right: 1rem;
+}

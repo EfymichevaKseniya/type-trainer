@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
-import { Modal } from "react-bootstrap";
-import { useSelector } from 'react-redux';
+import React  from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Modal, Button } from 'react-bootstrap';
+import { resetState, startTyping } from '../../store/typeTrainerSlice';
 import { Sidebar } from '../Sidebar/Sidebar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import fetchText from '../../store/ActionCreatorTrainer';
 
 export const ResultPopUp = () => {
-  const { isResult } = useSelector((state) => state.typeTrainer);
-  const [show, setShow] = useState(isResult);
+  const { isResult, lang } = useSelector((state) => state.typeTrainer);
+  const dispatch = useDispatch();
 
-  const handleClose = () => setShow(false);
+  const handleClick = () => {
+    dispatch(startTyping());
+    dispatch(resetState());
+    dispatch(fetchText(lang));
+  }
+
   return (
     <>
       <Modal
         size="lg"
-        show={show}
-        onHide={handleClose}
+        show={isResult}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">Ваш результат</Modal.Title>
-        </Modal.Header>
         <Modal.Body>
-          <Sidebar onClick = {() => handleClose} />
+          <Modal.Title id="contained-modal-title-vcenter">Ваш результат</Modal.Title>
+          <Sidebar/>
         </Modal.Body>
+        <Modal.Footer>
+          <Button size='lg' onClick={handleClick}>
+              Попробовать еще раз
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   )
