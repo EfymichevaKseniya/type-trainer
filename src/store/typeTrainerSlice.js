@@ -12,7 +12,7 @@ export const initialState = {
   currentSymbol: '',
   isSymbolWrong: false,
   startTime: null,
-  isStart: false,
+  isStart: true,
   isResult: false,
   mistakes: 0,
   duration: 0,
@@ -37,7 +37,7 @@ export const  typeTrainerSlice = createSlice({
       state.currentSymbol = action.payload[state.step];
     },
     resetState: (state) => {
-      state.isStart = !state.isStart;
+      // state.isStart = !state.isStart;
       state.outValues = '';
       state.typedText = '';
       state.startTime = null;

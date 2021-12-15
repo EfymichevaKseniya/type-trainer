@@ -4,11 +4,20 @@ import { Sidebar } from '../Sidebar/Sidebar';
 import { Button } from 'react-bootstrap';
 import fetchText from "../../store/ActionCreatorTrainer";
 import classes from './TypingPlace.module.css';
-import { resetState } from "../../store/typeTrainerSlice";
+import { resetState, startTyping } from "../../store/typeTrainerSlice";
 
 export const TypingPlace = () => {
   const dispatch = useDispatch();
   const  { text, isSymbolWrong, step, lang }  = useSelector((state) => state.typeTrainer);
+  const handleClick = () => {
+    dispatch(fetchText(lang));
+    dispatch(resetState());
+  }
+
+  const handleClickRest = () => {
+    dispatch(resetState());
+    dispatch(startTyping());
+  }
 
   return (
     <div className={classes.typingPlace}>
@@ -28,10 +37,10 @@ export const TypingPlace = () => {
       <div className={classes.wrapper}>
         <Sidebar />
         <div className={classes.box__btn}>
-          <Button className={'mr-2'} onClick={() => dispatch(fetchText(lang))}>
+          <Button className={'mr-2'} onClick={() => handleClick()}>
             Другой текст
           </Button>
-          <Button onClick={() => dispatch(resetState())}>
+          <Button onClick={() => handleClickRest()}>
             Заново
           </Button>
         </div>

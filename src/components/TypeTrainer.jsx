@@ -20,7 +20,6 @@ export const TypeTrainer = () => {
     dispatch(start(getCurrentTime()));
 
     let isFinished = Boolean(startTime && (text.length-1 === outValues.length));
-    console.log(isFinished)
       if (isFinished) {
         dispatch(complete());
       };
